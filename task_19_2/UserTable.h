@@ -7,6 +7,7 @@
 
 #include "WebAccount.h"
 #include <unordered_map>
+#include <map>
 #include <iostream>
 #include "string"
 
@@ -70,10 +71,14 @@ public:
     }
 
     int deleteWebAccount(string username, string password) {
-        WebAccount *w = find(username,password);
-        if (w != nullptr) {
-            delete w;
-            return 1;
+        size_t hashedPassword = hashVal(password);  // Hash the input password
+
+        auto range = userMap.equal_range(hashedPassword);
+        for (auto it = range.first; it != range.second; ++it) {
+            if (it->second.getUsername() == username) {
+                userMap.erase(it);
+                return 1;
+            }
         }
         return 0;
     }

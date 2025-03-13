@@ -81,10 +81,9 @@ void menu() {
 }
 
 int main() {
-    cout << "Test";
     CityCar cityCar(10,0,"Park");
-    if(cityCar.insert("E92", 1, 123, "BMW")) cout << "Success" << endl;
-    if(cityCar.insert(2,30,1234, "MAN")) cout << "Success 2" << endl;
+    cityCar.insert("E92", 1, 123, "BMW");
+    cityCar.insert(2,30,1234, "MAN");
     menu();
     return 0;
 }
