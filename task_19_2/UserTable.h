@@ -9,7 +9,7 @@
 #include <unordered_map>
 #include <map>
 #include <iostream>
-#include "string"
+#include <string>
 
 using namespace std;
 
@@ -45,6 +45,8 @@ public:
 
 
     int addUser(string username, string password) {
+        for(int i=0; i<username.length(); i++)
+            if(username[i] == ' ') username.erase(i,1);
         WebAccount w(username);
         if (find(username,password) == nullptr) {
             userMap.insert({hashVal(password), w});
